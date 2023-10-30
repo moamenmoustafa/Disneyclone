@@ -13,7 +13,15 @@ const Header = (props) =>{
     const username = useSelector(selectUserName)
     const photo = useSelector(selectUserPhoto)
     
-    
+    const setUser =(user)=>{
+        dispatch(
+            setUserLoginDetails({
+                name: user.displayName,
+                email: user.email,
+                photo: user.photoURL
+            })
+        )
+    }
     useEffect(()=>{
         auth.onAuthStateChanged(async (user)=>{
             if(user){
@@ -21,7 +29,7 @@ const Header = (props) =>{
                 history.push("/home")
             }
         })
-    },[username])
+    },[username , setUser,history])
 
     const handleAuth = () => {
             if (!username) {
@@ -43,15 +51,7 @@ const Header = (props) =>{
                 .catch((err) => alert(err.message));
             }
         };
-    const setUser =(user)=>{
-        dispatch(
-            setUserLoginDetails({
-                name: user.displayName,
-                email: user.email,
-                photo: user.photoURL
-            })
-        )
-    }
+
     return(
         <Nav>
             <Logo>
