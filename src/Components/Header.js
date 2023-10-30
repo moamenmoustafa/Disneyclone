@@ -29,7 +29,7 @@ const Header = (props) =>{
                 history.push("/home")
             }
         })
-    },[username , setUser,history])
+    },[username ,history])
 
     const handleAuth = () => {
             if (!username) {
